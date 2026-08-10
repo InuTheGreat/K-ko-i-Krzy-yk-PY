@@ -9,15 +9,16 @@ def print_board(x_board):
             print(x_board[x][y],end=' ')
         print()
 
-#ustawianie kółka bądź krzyżyka
-def set_symbol(znak):#będzie jeszcze argument x_board
+#wpisujemy O bądź X i sprawdzamy, czy współrzędne są poprawne
+def check_symbol(x_board, znak):
     if znak == True:
         symbol = 'O'
     else:
         symbol = 'X'
     ok_or_not = False
     while ok_or_not==False:
-        print( "Gdzie chcesz postawić " + symbol+ "? :" )
+        print( "Gdzie chcesz postawić " + symbol+ "?" )
+        print("Pamiętaj aby podać porawnie współrzędne: ")
         place=input()
         if len(place)==2:
             if 0<=int(place[1])<=2:
@@ -34,11 +35,21 @@ def set_symbol(znak):#będzie jeszcze argument x_board
     print("test udany")
 
 
-    pass 
+def change_board(x_board, symbol):
+    pass
 
+def translate_coord(coord):
+    coord_dict = {
+        'A':0,
+        'B':1,
+        'C':2
+    }
+
+    
+    pass
 #inicjalizacja planszy
 board = [['_' for _ in range(3)]for _ in range(3)]
 sign = True
-set_symbol(sign)
+check_symbol(sign)
 
 print_board(board)
