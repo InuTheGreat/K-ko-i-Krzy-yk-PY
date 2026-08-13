@@ -27,12 +27,12 @@ def check_symbol(x_board, znak):
                     t_place = translate_coord(place)
                     if check_if_present(x_board, t_place):
                         x_board=change_board(x_board,symbol,t_place)
-                        if symbol == True:
-                            symbol = False
+                        if znak == True:
+                            znak = False
                         else:
-                            symbol=True
+                            znak=True
                         ok_or_not=True
-                        return x_board
+                        return x_board, znak
                 else:
                     print("Niepoprawna wartość. Pierwsza współrzędna powinna być literą A lub B lub C")
             else:
@@ -67,9 +67,8 @@ def change_board(x_board,symbol,place):
 
 #inicjalizacja planszy
 board = [['_' for _ in range(3)]for _ in range(3)]
+sign = True
 while True:#główna pętla gry
-
-    sign = True
-    board = check_symbol(board, sign)
-
+    board, sign = check_symbol(board, sign)
+    print(sign)
     print_board(board)
