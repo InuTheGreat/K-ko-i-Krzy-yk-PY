@@ -21,8 +21,8 @@ def check_symbol(x_board, znak):
         print("Pamiętaj aby podać porawnie współrzędne: ")
         place=input()
         place=place.upper()
-        if len(place)==2:
-            if place[1].isnumeric():
+        if place[1].isnumeric():
+            if len(place)==2:
                 if 0<=int(place[1])<=2:
                     if place[0] in ['A','B','C']:
                         t_place = translate_coord(place)
@@ -41,7 +41,7 @@ def check_symbol(x_board, znak):
             else:
                 print("Niepoprawna wartość. Współrzędne powinny składać się z dwóch znaków")
         else:
-            print("Niepoprawna wartość. Druga współrzędna powinna się składać z liczby od 0 do 2.")
+            print("Niepoprawna wartość. Pierwsza współrzędna powinna być literą A lub B lub C.\n Druga współrzędna powinna się składać z liczby od 0 do 2.")
 
     
 
@@ -79,6 +79,7 @@ def winning_condition_check(x_board): #sprawdzamy, czy ktoś wygrał
                 board_val.append(x_board[y][x])
             if len(board_val)==3:
                 if board_val[0]==board_val[1] and board_val[1]==board_val[2]:
+                    print_board(x_board)
                     print("WYGRAŁ "+ board_val[0])
                     return False
     return True
