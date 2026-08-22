@@ -22,23 +22,26 @@ def check_symbol(x_board, znak):
         place=input()
         place=place.upper()
         if len(place)==2:
-            if 0<=int(place[1])<=2:
-                if place[0] in ['A','B','C']:
-                    t_place = translate_coord(place)
-                    if check_if_present(x_board, t_place):
-                        x_board=change_board(x_board,symbol,t_place)
-                        if znak == True:
-                            znak = False
-                        else:
-                            znak=True
-                        ok_or_not=True
-                        return x_board, znak
+            if place[1].isnumeric():
+                if 0<=int(place[1])<=2:
+                    if place[0] in ['A','B','C']:
+                        t_place = translate_coord(place)
+                        if check_if_present(x_board, t_place):
+                            x_board=change_board(x_board,symbol,t_place)
+                            if znak == True:
+                                znak = False
+                            else:
+                                znak=True
+                            ok_or_not=True
+                            return x_board, znak
+                    else:
+                        print("Niepoprawna wartość. Pierwsza współrzędna powinna być literą A lub B lub C")
                 else:
-                    print("Niepoprawna wartość. Pierwsza współrzędna powinna być literą A lub B lub C")
+                    print("Niepoprawna wartość. Druga współrzędna powinna się składać z liczby od 0 do 2.")
             else:
-                print("Niepoprawna wartość. Druga współrzędna powinna się składać z liczby od 0 do 2.")
+                print("Niepoprawna wartość. Współrzędne powinny składać się z dwóch znaków")
         else:
-            print("Niepoprawna wartość. Współrzędne powinny składać się z dwóch znaków")
+            print("Niepoprawna wartość. Druga współrzędna powinna się składać z liczby od 0 do 2.")
 
     
 
@@ -67,9 +70,9 @@ def change_board(x_board,symbol,place):
 
 def winning_condition_check(x_board): #sprawdzamy, czy ktoś wygrał
     
-    for x in range(x_board):
+    for x in range(len(x_board)):
         board_val=[]
-        for y in range (x_board[x]):
+        for y in range (len(x_board[x])):
             if x_board[y][x]=='_':
                 break
             else:
@@ -85,6 +88,6 @@ board = [['_' for _ in range(3)]for _ in range(3)]
 sign = True
 game = True
 while game == True:#główna pętla gry
-    board, sign = check_symbol(board, sign)
     print_board(board)
+    board, sign = check_symbol(board, sign)
     game = winning_condition_check(board)
