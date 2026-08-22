@@ -66,11 +66,25 @@ def change_board(x_board,symbol,place):
     return x_board
 
 def winning_condition_check(x_board): #sprawdzamy, czy ktoś wygrał
-    pass
+    
+    for x in range(x_board):
+        board_val=[]
+        for y in range (x_board[x]):
+            if x_board[y][x]=='_':
+                break
+            else:
+                board_val.append(x_board[y][x])
+            if len(board_val)==3:
+                if board_val[0]==board_val[1] and board_val[1]==board_val[2]:
+                    print("WYGRAŁ "+ board_val[0])
+                    return False
+    return True
 
 #inicjalizacja planszy
 board = [['_' for _ in range(3)]for _ in range(3)]
 sign = True
-while True:#główna pętla gry
+game = True
+while game == True:#główna pętla gry
     board, sign = check_symbol(board, sign)
     print_board(board)
+    game = winning_condition_check(board)
