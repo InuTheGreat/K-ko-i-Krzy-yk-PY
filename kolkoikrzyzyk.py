@@ -1,4 +1,7 @@
 #kółko i krzyżyk
+#TODO 
+#tryby gry gracz vs gracz i gracz vs komputer
+
 
 #rysowanie planszy w terminalu
 def print_board(x_board):
@@ -81,6 +84,27 @@ def winning_condition_check(x_board): #sprawdzamy, czy ktoś wygrał
                 if board_val[0]==board_val[1] and board_val[1]==board_val[2]:
                     print_board(x_board)
                     print("WYGRAŁ "+ board_val[0])
+                    return False
+    for x in range(len(x_board)):
+            board_val=[]
+            for y in range (len(x_board[x])):
+                if x_board[x][y]=='_':
+                    break
+                else:
+                    board_val.append(x_board[x][y])
+                if len(board_val)==3:
+                    if board_val[0]==board_val[1] and board_val[1]==board_val[2]:
+                        print_board(x_board)
+                        print("WYGRAŁ "+ board_val[0])
+                        return False
+    if x_board[1][1]!='_':
+        if x_board[1][1]==x_board[0][0] and x_board[0][0]==x_board[2][2]:
+            print_board(x_board)
+            print("WYGRAŁ "+ x_board[1][1])
+            return False
+        if x_board[1][1]==x_board[0][2] and x_board[0][2]==x_board[2][0]:
+                    print_board(x_board)
+                    print("WYGRAŁ "+ x_board[1][1])
                     return False
     return True
 
